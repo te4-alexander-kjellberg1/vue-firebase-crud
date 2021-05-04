@@ -1,38 +1,66 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <h1>Egna grejen</h1>
-    <table>
-      <tr>
-        <th>Company</th>
-        <th>Contact</th>
-        <th>Country</th>
-        <th></th>
-      </tr>
-      <tr>
-        <td>Alfreds Futterkiste</td>
-        <td>Maria Anders</td>
-        <td>Germany</td>
-        <td><div class="flex flex-col"><button>Update</button><button>Delete</button></div></td>
-      </tr>
-      <tr>
-        <td><input type="text" placeholder="Firstname"></td>
-        <td><input type="text" placeholder="Lastname"></td>
-        <td><input type="text" placeholder="Age"></td>
-        <td><button>Create</button></td>
-      </tr>
+  <div id="app" v-if="this.people">
+    <h1>CRUD med Firebase</h1>
 
-    </table>
+    <form>
+      <table>
+        <tr>
+          <th>Firstname</th>
+          <th>Lastname</th>
+          <th>Age</th>
+          <th>Edit tools</th>
+        </tr>
+        <tbody>
+          <Person v-for="(person, idx) in peopleAsArray" :key="idx" :person="person" />
+            <td><input type="text" v-model="newPerson.firstname" placeholder="Firstname"></td>
+            <td><input type="text" v-model="newPerson.lastname" placeholder="Lastname"></td>
+            <td><input type="number" v-model="newPerson.age" placeholder="Age"></td>
+            <td><button @click.prevent="addNewPerson">Create</button></td>
+        </tbody>
+      </table>
+    </form>
   </div>
 </template>
 
 <script>
+import Person from './components/Person'
+import db from '@/db'
+
 export default {
   name: 'App',
+  components: { 
+    Person 
+  },
+  data() {
+   return {
+      people: null,
+      newPerson: {
+        firstname: "",
+        lastname: "",
+        age: 0
+      }
+    }
+  },
+  methods: {
+    addNewPerson() {
+      db.ref('people').push(this.newPerson)
+    }
+  },
+  computed: {
+    peopleAsArray() {
+      return Object.keys(this.people).map((k) => Object.assign({id: k}, this.people[k]));
+    }
+  },
+  firebase: {
+    people: db.ref('people')
+  }
 }
 </script>
 
 <style>
+body {
+  background-color: rgb(242, 242, 242);
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -53,6 +81,7 @@ table {
 }
 th {
   background-color: gray;
+  color: whitesmoke;
 }
 
 td, th {
