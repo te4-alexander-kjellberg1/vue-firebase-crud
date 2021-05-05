@@ -2,7 +2,8 @@
 node_modules
 /dist
 dbConfig.js
-
+.firebase
+.firebaserc
 
 # local env files
 .env.local
