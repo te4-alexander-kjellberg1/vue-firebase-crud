@@ -5,8 +5,8 @@
     <td>{{person.age}}</td>
     <td>
       <div class="flex flex-col">
-        <button @click.prevent="updatePerson">Update</button>
-        <button @click.prevent="deletePerson">Delete</button>
+        <button class="basic-btn" @click.prevent="updatePerson">Update</button>
+        <button class="basic-btn" @click.prevent="deletePerson">Delete</button>
       </div>
     </td>
   </tr>
@@ -23,8 +23,8 @@
     </td>
     <td>
       <div class="flex flex-col">
-        <button @click.prevent="saveEditedPerson">Save</button>
-        <button @click.prevent="deletePerson">Delete</button>
+        <button class="basic-btn" @click.prevent="saveEditedPerson">Save</button>
+        <button class="basic-btn" @click.prevent="deletePerson">Delete</button>
       </div>
     </td>
 

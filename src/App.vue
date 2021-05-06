@@ -1,80 +1,73 @@
 <template>
-  <div id="app" v-if="this.people">
-    <h1>CRUD med Firebase</h1>
-
-    <form>
-      <table>
-        <tr>
-          <th>Firstname</th>
-          <th>Lastname</th>
-          <th>Age</th>
-          <th>Edit tools</th>
-        </tr>
-        <tbody>
-          <Person v-for="(person, idx) in peopleAsArray" :key="idx" :person="person" />
-            <td><input type="text" v-model="newPerson.firstname" placeholder="Firstname"></td>
-            <td><input type="text" v-model="newPerson.lastname" placeholder="Lastname"></td>
-            <td><input type="number" v-model="newPerson.age" placeholder="Age"></td>
-            <td><button @click.prevent="addNewPerson">Create</button></td>
-        </tbody>
-      </table>
-    </form>
-    <router-view></router-view>
+  <div id="app">
+    <router-view/>
   </div>
 </template>
 
 <script>
-import Person from './components/Person'
-import db from '@/db'
-
 export default {
   name: 'App',
-  components: { 
-    Person 
-  },
-  data() {
-   return {
-      people: null,
-      newPerson: {
-        firstname: "",
-        lastname: "",
-        age: 0
-      }
-    }
-  },
-  methods: {
-    addNewPerson() {
-      db.ref('people').push(this.newPerson)
-    }
-  },
-  computed: {
-    peopleAsArray() {
-      return Object.keys(this.people).map((k) => Object.assign({id: k}, this.people[k]));
-    }
-  },
-  firebase: {
-    people: db.ref('people')
-  }
 }
 </script>
 
 <style>
 body {
   background-color: rgb(242, 242, 242);
+  margin: 0;
+  padding: 0;
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 .flex {
   display: flex;
 }
 .flex-col {
   flex-direction: column;
+}
+.content {
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  background: blueviolet;
+}
+.basic-input {
+  padding: 0.25rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+.basic-btn {
+  cursor: pointer;
+  border: none;
+  font-size: 1.2rem;
+  margin-top: 5px;
+  min-width: 6rem;
+  color: whitesmoke;
+  padding: 6px;
+  border-radius: 25px;
+  background: #2c3e50;
+  box-sizing: border-box;
+  box-shadow: 0 5px 10px rgba(69, 69, 69, 0.6);
+}
+.form-card {
+  padding: 10px;
+  background: rgba(163, 110, 177, 0.666);
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0,0,0,.6);
+  border-radius: 10px;
+}
+a {
+  color: aliceblue;
+}
+.ml-0 {
+  margin-left: 0;
+}
+.mt-0 {
+  margin-top: 0;
 }
 table {
   margin: 0 auto;

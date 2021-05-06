@@ -4,6 +4,7 @@ node_modules
 dbConfig.js
 .firebase
 .firebaserc
+.env
 
 # local env files
 .env.local
