@@ -67,7 +67,6 @@ router.beforeEach(async(to, from, next) => {
   }
   if (to.matched.some(record => record.meta.authRequired)) {
     let user = await firebase.default.auth().currentUser
-    console.log(user)
     if (user) {
       next();
     } else {

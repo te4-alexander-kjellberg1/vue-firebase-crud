@@ -20,13 +20,16 @@ body {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
+  color: whitesmoke;
 }
 .flex {
   display: flex;
 }
 .flex-col {
   flex-direction: column;
+}
+.justify-space-between {
+  justify-content: space-between;
 }
 .content {
   justify-content: center;
@@ -69,6 +72,11 @@ a {
 .mt-0 {
   margin-top: 0;
 }
+.center-me {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 table {
   margin: 0 auto;
   border-collapse: collapse;
@@ -88,5 +96,8 @@ tr:nth-child(even) {
 }
 tr:nth-child(odd) {
   background-color: rgb(205, 205, 205);
+}
+button {
+  cursor: pointer;
 }
 </style>

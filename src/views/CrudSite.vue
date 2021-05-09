@@ -1,7 +1,7 @@
 <template>
 <div class="flex">
   <Navbar/>
-  <form class="content flex" v-if="people">
+  <form id="importantTable" class="content flex" v-if="people">
     <table>
       <tr>
         <th>Firstname</th>
@@ -34,7 +34,7 @@ export default {
     Navbar
   },  
   data() {
-   return {
+    return {
       people: null,
       newPerson: {
         firstname: "",
@@ -45,7 +45,7 @@ export default {
   },
   methods: {
     addNewPerson() {
-      db.ref('people').push(this.newPerson)
+      db.ref('people').push(this.newPerson);
     }
   },
   computed: {
@@ -60,5 +60,7 @@ export default {
 </script>
 
 <style>
-
+#importantTable {
+  color: #2c3e50 !important;
+}
 </style>
